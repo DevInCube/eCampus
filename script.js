@@ -35,7 +35,18 @@ var temp = ' <li class="msg">\
 <p class="to">To: <span>{{recipientTitle}}</span></p>\
 <pre class="body">{{body}}</pre>\</li>';
 
-function runAll() {
+(function (global, factory) {
+  if (typeof exports === "object" && exports) {
+    factory(exports); // CommonJS
+  } else if (typeof define === "function" && define.amd) {
+    define(['exports'], factory); // AMD
+  } else {
+    factory(global.Campus = {}); // <script>
+  }
+}(this, function (campus) {
+	
+	
+campus.run = function () {
 	
 var loader = null;
 $.getScript( 'https://rawgit.com/janl/mustache.js/master/mustache.js', init);
@@ -75,5 +86,7 @@ function init(res, status){
 	
 }
 
-} //runAll
+} //run
+
+})
 
