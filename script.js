@@ -35,6 +35,8 @@ var temp = ' <li class="msg">\
 <p class="to">To: <span>{{recipientTitle}}</span></p>\
 <pre class="body">{{body}}</pre>\</li>';
 
+function runAll() {
+	
 var loader = null;
 $.getScript( 'https://rawgit.com/janl/mustache.js/master/mustache.js', init);
 function init(res, status){
@@ -72,4 +74,6 @@ function init(res, status){
 	}
 	
 }
+
+} //runAll
 
