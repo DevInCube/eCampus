@@ -40,6 +40,7 @@ $.getScript( 'https://rawgit.com/janl/mustache.js/master/mustache.js', init);
 function init(res, status){
 	
 	$('#run').click(function(e){
+		alert('run');
 		if(loader != null) loader.abort();
 		$('#msglist').html("");
 		var fromId = $('#fromId').val();
