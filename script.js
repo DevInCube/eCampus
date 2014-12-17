@@ -50,11 +50,13 @@
 		$('body').prepend(bodyAll);		
 	}
 	
-	campus.run = function () {		
+	campus.run = function () {
+		
+		campus.prepareView();
+		
 		var loader = null;		
 		
 		$('#run').click(function(e){
-			alert('run');
 			if(loader != null) loader.abort();
 			$('#msglist').html("");
 			var fromId = $('#fromId').val();
