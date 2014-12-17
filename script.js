@@ -48,9 +48,7 @@ var temp = ' <li class="msg">\
 	
 campus.run = function () {
 	
-var loader = null;
-$.getScript( 'https://rawgit.com/janl/mustache.js/master/mustache.js', init);
-function init(res, status){
+	var loader = null;
 	
 	$('#run').click(function(e){
 		alert('run');
@@ -64,7 +62,7 @@ function init(res, status){
 		}
 		else	
 			alert('Nope!');
-	});
+	})
 	
 	function print(r){
 		if (!empty(r)) {
@@ -84,9 +82,9 @@ function init(res, status){
 		});
 	}
 	
-}
+	$.getScript( 'https://rawgit.com/janl/mustache.js/master/mustache.js');
 
 } //run
 
-}))
+}));
 
