@@ -36,59 +36,53 @@
 		<ul id="msglist" ></ul>\
 		</div>';
 		
-	var temp = ' <li class="msg">\
+	var messageTemp = ' <li class="msg">\
 		<div class="id">{{msgId}}</div>\
 		<p class="title">{{subject}}</p>\
 		<p class="from">From: <span>{{sender}}</span></p>\
 		<p class="to">To: <span>{{recipientTitle}}</span></p>\
 		<pre class="body">{{body}}</pre>\</li>';
 	
-	campus.prepareView = function() {
+	function prepareView() {
 		$('style').remove();		
 		$('head').append(styles);
-		$('body').html("");		
-		$('body').prepend(bodyAll);		
+		$('body').html(bodyAll);		
 	}
 	
 	campus.run = function () {
-		
-		campus.prepareView();
-		
+		$.getScript( 'https://rawgit.com/janl/mustache.js/master/mustache.js');
+		prepareView();
 		var loader = null;		
-		
+		var list = $('#msglist');
 		$('#run').click(function(e){
-			if(loader != null) loader.abort();
-			$('#msglist').html("");
+			if(loader != null) 
+				loader.abort();
+			list.empty();
 			var fromId = $('#fromId').val();
 			var toId = $('#toId').val();
-			if(fromId<toId) {
-				for(var i=fromId; i < toId; i++)
-					getMsg(i);
-			}
-			else	
-				alert('Nope!');
+			if(fromId > toId) 
+				fromId = toId - 1;
+			for(var i = fromId; i < toId; i++)
+				getMsg(i);
 		})
 		
-		function print(r){
-			if (!empty(r)) {
+		function print(message){
+			if (!empty(message)) {
 				r.body =  r.body.replace(/<br\s*[\/]?>/gi, "\n");
-				var msg = Mustache.to_html(temp, r);
-					$('#msglist').append(msg);
+				var msgView = Mustache.to_html(messageTemp, message);
+				list.append(msgView);
 			}
 		}
 		
 		function getMsg(id){
 			var loader = $.ajax({  
 				type: "POST",  
-				dataType:"json",  // html json
+				dataType:"json", 
 				url: "/ajax/msg.get.php",  
-				data: "rec="+id, 
+				data: "rec=" + id, 
 				success: print
 			});
 		}
-		
-		$.getScript( 'https://rawgit.com/janl/mustache.js/master/mustache.js');
-
 	} //run
 
 }));
