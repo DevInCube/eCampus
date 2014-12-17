@@ -68,7 +68,7 @@
 		
 		function print(message){
 			if (!empty(message)) {
-				r.body =  r.body.replace(/<br\s*[\/]?>/gi, "\n");
+				message.body =  message.body.replace(/<br\s*[\/]?>/gi, "\n");
 				var msgView = Mustache.to_html(messageTemp, message);
 				list.append(msgView);
 			}
