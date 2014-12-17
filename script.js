@@ -88,5 +88,5 @@ function init(res, status){
 
 } //run
 
-})
+}))
 
